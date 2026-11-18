@@ -1,0 +1,34 @@
+# --- C++ ---
+build/
+bin/
+out/
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.exp
+*.out
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+cache/
+
+# --- Dados e resultados grandes (geram-se de novo pelos scripts) ---
+dados/
+resultados/
+
+# --- Editores e sistema ---
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
