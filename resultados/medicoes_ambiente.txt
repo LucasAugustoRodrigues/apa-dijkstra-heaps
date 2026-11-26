@@ -1,0 +1,9 @@
+data_hora: 2026-11-26T19:02:27.482336
+plataforma: Windows-11-10.0.26200-SP0
+processador: Intel64 Family 6 Model 186 Stepping 3, GenuineIntel
+python: 3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+g++: g++ (Rev4, Built by MSYS2 project) 16.2.0
+networkx: 3.7
+osmnx: 2.1.2
+git_commit: a755aaf26508d1d221ca6fcc69d1067e855b8f76
+comando: scripts\rodar_experimentos.py

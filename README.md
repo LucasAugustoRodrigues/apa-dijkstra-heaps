@@ -83,23 +83,31 @@ Verifica a integridade do CSV gerado.
 
 ### Colunas do CSV
 
-| Coluna | Significado |
-|---|---|
-| `instancia` | Nome da instância (nome do arquivo sem extensão) |
-| `n` | Número de vértices do grafo |
-| `m` | Número de arcos do grafo |
-| `fila` | Tipo de fila de prioridade: `binario` ou `fibonacci` |
-| `variante` | Quando os vértices entram na fila: `todos` insere todos no início (a origem com 0, os outros com infinito), e o primeiro alcance de um vértice conta como `decrease_key`; `alcance` insere cada vértice só quando ele é alcançado, e o primeiro alcance conta como `insert` |
-| `repeticao` | Número da repetição (1 a R) |
-| `origem` | Vértice de origem desta repetição |
-| `tempo_ms` | Tempo só do Dijkstra, em milissegundos (a leitura do grafo fica fora da medição) |
-| `insert` | Número de inserções na fila |
-| `extract_min` | Número de extrações do mínimo |
-| `decrease_key` | Número de decrementos de chave |
-| `comparacoes` | Número de comparações realizadas pela fila |
-| `alcancados` | Número de vértices alcançados a partir da origem |
-| `bytes_fila_pico` | Pico de memória da própria fila em bytes, contado dentro da estrutura |
-| `pico_processo_bytes` | Pico de memória do processo inteiro em bytes, inclui a leitura do grafo (use `bytes_fila_pico` para comparar as filas) |
+| Coluna                  | Significado                                                                                                                                                                                                                                                                                |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `instancia`           | Nome da instância (nome do arquivo sem extensão)                                                                                                                                                                                                                                         |
+| `n`                   | Número de vértices do grafo                                                                                                                                                                                                                                                              |
+| `m`                   | Número de arcos do grafo                                                                                                                                                                                                                                                                  |
+| `fila`                | Tipo de fila de prioridade: `binario` ou `fibonacci`                                                                                                                                                                                                                                   |
+| `variante`            | Quando os vértices entram na fila: `todos` insere todos no início (a origem com 0, os outros com infinito), e o primeiro alcance de um vértice conta como `decrease_key`; `alcance` insere cada vértice só quando ele é alcançado, e o primeiro alcance conta como `insert` |
+| `repeticao`           | Número da repetição (1 a R)                                                                                                                                                                                                                                                             |
+| `origem`              | Vértice de origem desta repetição                                                                                                                                                                                                                                                       |
+| `tempo_ms`            | Tempo só do Dijkstra, em milissegundos (a leitura do grafo fica fora da medição)                                                                                                                                                                                                        |
+| `insert`              | Número de inserções na fila                                                                                                                                                                                                                                                             |
+| `extract_min`         | Número de extrações do mínimo                                                                                                                                                                                                                                                          |
+| `decrease_key`        | Número de decrementos de chave                                                                                                                                                                                                                                                            |
+| `comparacoes`         | Número de comparações realizadas pela fila                                                                                                                                                                                                                                              |
+| `alcancados`          | Número de vértices alcançados a partir da origem                                                                                                                                                                                                                                        |
+| `bytes_fila_pico`     | Pico de memória da própria fila em bytes, contado dentro da estrutura                                                                                                                                                                                                                    |
+| `pico_processo_bytes` | Pico de memória do processo inteiro em bytes, inclui a leitura do grafo (use `bytes_fila_pico` para comparar as filas)                                                                                                                                                                  |
+
+## Análise dos resultados
+
+Depois de rodar os experimentos, gere as tabelas, os ajustes de curva e as figuras do artigo:
+
+    python scripts\analisar.py resultados\medicoes.csv --saida resultados\analise
+
+O script lê `resultados/medicoes.csv` e grava em `resultados/analise/`: `resumo.csv`, `razoes.csv`, `ajustes.csv`, as tabelas em LaTeX (`tab_belem.tex`, `tab_ajustes.tex`) e as figuras em PDF e PNG. O `medicoes.csv` da rodada usada no artigo (26/11/2026) está versionado, com o ambiente em `resultados/medicoes_ambiente.txt`.
 
 ## Ambiente dos experimentos do artigo
 
@@ -112,14 +120,14 @@ Verifica a integridade do CSV gerado.
 
 ## Estrutura do repositório
 
-| Pasta | Conteúdo |
-|---|---|
-| `src/` | Código-fonte C++: grafo (CSR), heaps, Dijkstra, contadores e programa principal |
-| `testes/` | Testes de corretude em C++ e scripts de conferência com a NetworkX |
-| `scripts/` | Scripts Python para gerar instâncias, rodar experimentos e checar resultados |
-| `instancias/` | Recortes versionados da malha de Belém |
-| `dados/` | Instâncias sintéticas e arquivos gerados pelos scripts (não versionado) |
-| `resultados/` | CSV de medições gerado por `rodar_experimentos.py` (não versionado) |
+| Pasta           | Conteúdo                                                                                                                                                |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/`        | Código-fonte C++: grafo (CSR), heaps, Dijkstra, contadores e programa principal                                                                         |
+| `testes/`     | Testes de corretude em C++ e scripts de conferência com a NetworkX                                                                                      |
+| `scripts/`    | Scripts Python para gerar instâncias, rodar experimentos, checar e analisar os resultados                                                               |
+| `instancias/` | Recortes versionados da malha de Belém                                                                                                                  |
+| `dados/`      | Instâncias sintéticas e arquivos gerados pelos scripts (não versionado)                                                                               |
+| `resultados/` | Medições da rodada do artigo (`medicoes.csv` e `medicoes_ambiente.txt`) e saídas da análise em `analise/`; novas rodadas não são versionadas |
 
 ## Uso de ferramentas de IA
 
